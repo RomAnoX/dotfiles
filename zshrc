@@ -8,9 +8,10 @@ antigen use oh-my-zsh
 antigen bundle git
 antigen bundle command-not-found
 
-# Syntax highlighting bundle.
+# Bundles from zsh-users.
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
+antigen bundle zsh-users/zsh-autosuggestions
 
 # Load the theme.
 antigen theme dracula/zsh dracula
@@ -27,11 +28,9 @@ export PATH="/home/uacosta/.rbenv/shims:/home/uacosta/.rbenv/bin:/home/uacosta/.
 # For a full list of active aliases, run `alias`.
 #
 
-# Example aliases
-alias zshconfig="vim ~/.zshrc"
+# Aliases
 alias adops="cd /app/shared/docroots"
 
-# Aliases
 alias tnew='tmux new -s'
 alias tat='tmux attach -d -t'
 alias tls='tmux ls'
