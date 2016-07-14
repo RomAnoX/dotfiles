@@ -1,6 +1,15 @@
 "**************************************
 " NeoVim Configuration
 "**************************************
+
+" vim-plug (https://github.com/junegunn/vim-plug) settings
+" Automatically install vim-plug and run PlugInstall if vim-plug not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
 if has('vim_starting')
   set nocompatible " Be iMproved
 endif
@@ -47,11 +56,6 @@ filetype plugin indent on
 "**************************************
 " Basic Setup
 "**************************************
-" Encoding
-set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8
-
 " Fix Backspace indent
 set backspace=indent,eol,start
 
@@ -79,7 +83,6 @@ set showcmd
 
 " Tabs
 set tabstop=2
-set softtabstop=0
 set shiftwidth=2
 set expandtab
 
@@ -91,6 +94,9 @@ set ruler
 set number
 set t_Co=256
 set mouse=
+set cursorline
+
+color dracula
 
 if !has("gui_running")
   let g:CSApprox_loaded = 1
