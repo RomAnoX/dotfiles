@@ -1,30 +1,34 @@
+"**************************************
+" NeoVim Configuration
+"**************************************
+if has('vim_starting')
+  set nocompatible " Be iMproved
+endif
 
+" Required:
 call plug#begin('~/.vim/plugged')
 
-" Plugin
-Plug 'spf13/vim-autoclose'
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+"**************************************
+" Vim-plug Plugin Packages
+"**************************************
+Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-sensible'
-Plug 'vim-ruby/vim-ruby'
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'scrooloose/nerdcommenter'
+Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'pangloss/vim-javascript'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'vim-scripts/grep.vim'
 Plug 'tpope/vim-surround'
-Plug 'alvan/vim-closetag'
+Plug 'tpope/vim-fugitive'
+Plug 'amirh/HTML-AutoCloseTag'
 Plug 'othree/yajs.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'godlygeek/tabular'
-Plug 'mustache/vim-mustache-handlebars'
-
-if !has('nvim')
-  Plug 'JulesWang/css.vim' " only necessary if your Vim version < 7.4
-endif
-
+Plug 'tmux-plugins/vim-tmux'
 Plug 'cakebaker/scss-syntax.vim'
+Plug 'vim-scripts/CSApprox'
 Plug 'dracula/vim'
 
 if has('nvim')
@@ -36,29 +40,72 @@ endif
 
 call plug#end()
 
-" Global options
-set number
-set mouse=
-set nowrap
+" Required:
+filetype plugin indent on
+
+"**************************************
+" Basic Setup
+"**************************************
+" Encoding
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+
+" Fix Backspace indent
+set backspace=indent,eol,start
+
+" Map leader to
+let mapleader=','
+
+" Enable hidden buffers
+set hidden
+
+" Searching
+set hlsearch
+set incsearch
 set ignorecase
 set smartcase
-set t_Co=256
+
+" Encoding
+set bomb
+set binary
+
+" Directories for swp files
+set nobackup
+set noswapfile
+set fileformats=unix,dos,mac
+set showcmd
+
+" Tabs
 set tabstop=2
+set softtabstop=0
 set shiftwidth=2
 set expandtab
+
+"**************************************
+" Visual Settings
+"**************************************
+syntax on
+set ruler
+set number
+set t_Co=256
+set mouse=
+
+if !has("gui_running")
+  let g:CSApprox_loaded = 1
+endif
+
+if (exists('+colorcolumn'))
+  set colorcolumn=80
+endif
+
+set nowrap
 set list
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace"
-set backupdir=~/.vim/_backup//  " where to put backup files.
-set directory=~/.vim/_temp//    " where to put swap files.
-set wildignore+=tags,*/tmp/*,*.so,*.swp,*.zip,*/spec/vcr/*,*/vendor/*,*/log/*,*/\.git/*,*/script/*,*/bin/*,*/coverage/*,*/db/seeds.rb,*/node_modules/*,*/dist/*
+" Highlight problematic whitespace
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 
-" Disable Ex mode from Q
-nnoremap Q <nop>
-
-" AutoCloseTag options
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.hbs"
-
-" Bundle Airline options
+" vim-airline
+let g:airline_theme = 'molokai'
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -67,21 +114,76 @@ let g:airline_symbols.space = "\ua0"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#syntastic#enabled = 1
-let g:airline_theme = 'molokai'
 
-" Plugin CtrlP
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)\|node_modules\|dist$'
+hi SignColumn ctermbg=232
 
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-  " Use ag in CtrlP for listing files.
-  " Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+"**************************************
+" Abbrevations
+"**************************************
+" no one is really happy until you have this shortcuts
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev Qalll! qall!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ qw
+cnoreabbrev WQ qw
+cnoreabbrev Q q
+cnoreabbrev W w
+cnoreabbrev Qalll qall
+
+" Disable Ex mode from Q
+nnoremap Q <nop>
+
+" grep.vim
+nnoremap <silent> <leader>f :Rgrep<CR>
+let Grep_Default_Options = '-IR'
+let Grep_Skip_Files = '*.log *.db'
+let Grep_Skip_Dirs = '.git node_modules bower_components'
+
+" terminal
+if has('nvim')
+  nnoremap <silent> <leader>sh :terminal<CR>
 endif
 
+" Use Ctrl + E for sparkup plugin like Emmet for html files
+
+"**************************************
+" Abbrevations
+"**************************************
+" Split
+noremap <leader>h :<C-u>split<CR>
+noremap <leader>v :<C-u>vsplit<CR>
+
+" Git
+noremap <Leader>ga :Gwrite<CR>
+noremap <Leader>gc :Gcommit<CR>
+noremap <Leader>gsh :Gpush<CR>
+noremap <Leader>gll :Gpull<CR>
+noremap <Leader>gs :Gstatus<CR>
+noremap <Leader>gd :Gvdiff<CR>
+noremap <Leader>gr :Gremove<CR>
+
+" Plugin CtrlP
+set wildmode=list:longest,list:full
+set wildignore+=tags,*/tmp/*,*.so,*.swp,*.zip,*/spec/vcr/*,*/vendor/*,*/log/*,*/\.git/*,*/script/*,*/bin/*,*/coverage/*,*/node_modules/*,*/dist/*,*/bower_components/*
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)\|node_modules\|bower_components\|dist$'
+let g:ctrlp_user_command = "find %s -type f | grep -Ev '"+ g:ctrlp_custom_ignore +"'"
+let g:ctrlp_use_caching = 1
+
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:crtlp_use_caching = 0
+endif
+
+cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+noremap <leader>b :CtrlPBuffer<CR>
+let g:ctrlp_map = '<leader>e'
+let g:ctrlp_open_new_file = 'r'
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+
+" NeoMake or Syntastic
 if has('nvim')
   " Plugin Neomake
   autocmd! BufWritePost,BufEnter * Neomake
@@ -106,4 +208,21 @@ else
   let g:syntastic_check_on_open = 1
 endif
 
-hi SignColumn ctermbg=232
+" Disable visualbell
+set visualbell t_vb=
+
+" Copy/Paste/Cut
+if has('unnamedplus')
+  set clipboard=unnamed,unnamedplus
+endif
+
+" Clean search (highlight)
+noremap <silent> <leader><space> :noh<CR>
+
+" Vmap for maintain visual mode after shifting > and <
+vmap < <gv
+vmap > >gv
+
+" Custom configs
+let g:javascript_enable_domhtmlcss = 1
+
