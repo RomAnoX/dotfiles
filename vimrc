@@ -24,8 +24,9 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'amirh/HTML-AutoCloseTag'
 Plug 'othree/yajs.vim'
-Plug 'kien/ctrlp.vim'
 Plug 'godlygeek/tabular'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'vim-scripts/CSApprox'
@@ -164,24 +165,16 @@ noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
 
-" Plugin CtrlP
-set wildmode=list:longest,list:full
 set wildignore+=tags,*/tmp/*,*.so,*.swp,*.zip,*/spec/vcr/*,*/vendor/*,*/log/*,*/\.git/*,*/script/*,*/bin/*,*/coverage/*,*/node_modules/*,*/dist/*,*/bower_components/*
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)\|node_modules\|bower_components\|dist$'
-let g:ctrlp_user_command = "find %s -type f | grep -Ev '"+ g:ctrlp_custom_ignore +"'"
-let g:ctrlp_use_caching = 1
-
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  let g:crtlp_use_caching = 0
 endif
 
-cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-noremap <leader>b :CtrlPBuffer<CR>
-let g:ctrlp_map = '<leader>e'
-let g:ctrlp_open_new_file = 'r'
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+" FZF file fuzzy search
+let g:fzf_command_prefix = 'Fzf'
+let g:fzf_layout = { 'down': '~30%' }
+noremap <leader>e :FZF<CR>
+noremap <leader>b :FzfBuffers<CR>
 
 " NeoMake or Syntastic
 if has('nvim')
@@ -215,6 +208,9 @@ set visualbell t_vb=
 if has('unnamedplus')
   set clipboard=unnamed,unnamedplus
 endif
+
+" Close buffer
+noremap <silent> <leader>c :bd<CR>
 
 " Clean search (highlight)
 noremap <silent> <leader><space> :noh<CR>
