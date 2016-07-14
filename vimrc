@@ -31,14 +31,18 @@ Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'vim-scripts/grep.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'matze/vim-move'
 Plug 'amirh/HTML-AutoCloseTag'
 Plug 'othree/yajs.vim'
 Plug 'godlygeek/tabular'
+Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'vim-scripts/CSApprox'
+" Themes
 Plug 'dracula/vim'
 
 if has('nvim')
@@ -80,6 +84,8 @@ set nobackup
 set noswapfile
 set fileformats=unix,dos,mac
 set showcmd
+set showmatch
+set noerrorbells
 
 " Tabs
 set tabstop=2
@@ -92,24 +98,35 @@ set expandtab
 syntax on
 set ruler
 set number
-set t_Co=256
 set mouse=
 set cursorline
 
+" Theme
+set t_Co=256
+set background=dark
 color dracula
+
+if !&scrolloff
+  set scrolloff=3
+endif
+
+if !&sidescrolloff
+  set sidescrolloff=5
+endif
 
 if !has("gui_running")
   let g:CSApprox_loaded = 1
 endif
 
 if (exists('+colorcolumn'))
-  set colorcolumn=80
+  set colorcolumn=81
 endif
 
 set nowrap
 set list
 " Highlight problematic whitespace
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+set gdefault
 
 " vim-airline
 let g:airline_theme = 'molokai'
@@ -133,8 +150,8 @@ cnoreabbrev Q! q!
 cnoreabbrev Qalll! qall!
 cnoreabbrev Wq wq
 cnoreabbrev Wa wa
-cnoreabbrev wQ qw
-cnoreabbrev WQ qw
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
 cnoreabbrev Q q
 cnoreabbrev W w
 cnoreabbrev Qalll qall
@@ -227,4 +244,5 @@ vmap > >gv
 
 " Custom configs
 let g:javascript_enable_domhtmlcss = 1
-
+let g:mustache_abbreviations = 1
+let g:move_key_modifier = 'C'
