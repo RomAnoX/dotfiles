@@ -6,7 +6,6 @@ Plug 'spf13/vim-autoclose'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'tpope/vim-sensible'
 Plug 'vim-ruby/vim-ruby'
-Plug 'scrooloose/syntastic'
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline'
@@ -18,6 +17,7 @@ Plug 'tpope/vim-surround'
 Plug 'alvan/vim-closetag'
 Plug 'othree/yajs.vim'
 Plug 'kien/ctrlp.vim'
+Plug 'godlygeek/tabular'
 Plug 'mustache/vim-mustache-handlebars'
 
 if !has('nvim')
@@ -27,7 +27,10 @@ endif
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'dracula/vim'
 
-if !has('nvim')
+if has('nvim')
+  Plug 'benekastah/neomake'
+else
+  Plug 'scrooloose/syntastic'
   Plug 'noahfrederick/vim-neovim-defaults'
 endif
 
@@ -79,20 +82,28 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
-" Bundle Syntastic
-" On by default, turn it off for html
-let g:syntastic_mode_map = { 'mode': 'active',
-      \ 'active_filetypes': [],
-      \ 'passive_filetypes': ['html'] }
-let g:syntastic_ruby_checkers = ['rubocop', 'mri']
-let g:syntastic_javascript_checkers = ['jshint']"
-let g:syntastic_enable_signs = 1
-let g:syntastic_style_error_symbol = '✗✗'
-let g:syntastic_style_warning_symbol = '!!'
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '!'
-let g:syntastic_auto_jump = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_check_on_open = 1
+if has('nvim')
+  " Plugin Neomake
+  autocmd! BufWritePost,BufEnter * Neomake
+  map <leader>sc :Neomake!<CR>
+  let g:neomake_javascript_enabled_makers = ['jshint']
+  let g:neomake_ruby_enabled_makers = ['rubocop']
+else
+  " Plugin Syntastic
+  " On by default, turn it off for html
+  let g:syntastic_mode_map = { 'mode': 'active',
+        \ 'active_filetypes': [],
+        \ 'passive_filetypes': ['html'] }
+  let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+  let g:syntastic_javascript_checkers = ['jshint']"
+  let g:syntastic_enable_signs = 1
+  let g:syntastic_style_error_symbol = '✗✗'
+  let g:syntastic_style_warning_symbol = '!!'
+  let g:syntastic_error_symbol = '✗'
+  let g:syntastic_warning_symbol = '!'
+  let g:syntastic_auto_jump = 0
+  let g:syntastic_check_on_wq = 0
+  let g:syntastic_check_on_open = 1
+endif
 
 hi SignColumn ctermbg=232
