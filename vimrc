@@ -94,9 +94,10 @@ set expandtab
 "**************************************
 syntax on
 set ruler
-set number
 set mouse=
 set cursorline
+set number
+set relativenumber
 
 " Theme
 set t_Co=256
