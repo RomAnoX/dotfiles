@@ -12,6 +12,9 @@ endif
 
 if has('vim_starting')
   set nocompatible " Be iMproved
+  set encoding=utf-8
+  set fileencoding=utf-8
+  set fileencodings=utf-8
 endif
 
 " Required:
@@ -22,25 +25,23 @@ call plug#begin('~/.vim/plugged')
 "**************************************
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-sensible'
-Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plug 'scrooloose/nerdcommenter'
+Plug 'rstacruz/sparkup', { 'rtp': 'vim/', 'for': 'html*' }
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'vim-scripts/grep.vim'
+Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'matze/vim-move'
-Plug 'amirh/HTML-AutoCloseTag'
-Plug 'othree/yajs.vim'
+Plug 'amirh/HTML-AutoCloseTag', { 'for': 'html*' }
+Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'tmux-plugins/vim-tmux'
-Plug 'cakebaker/scss-syntax.vim'
+Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
+Plug 'cakebaker/scss-syntax.vim', { 'for': 'sass' }
 Plug 'vim-scripts/CSApprox'
 " Themes
 Plug 'dracula/vim'
@@ -74,10 +75,6 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-
-" Encoding
-set bomb
-set binary
 
 " Directories for swp files
 set nobackup
@@ -125,8 +122,10 @@ endif
 set nowrap
 set list
 " Highlight problematic whitespace
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+set listchars=tab:›\ ,trail:•,extends:»,precedes:«,nbsp:⣿
 set gdefault
+" dont syntax highlights long lines
+set synmaxcol=512
 
 " vim-airline
 let g:airline_theme = 'molokai'
@@ -159,12 +158,6 @@ cnoreabbrev Qalll qall
 " Disable Ex mode from Q
 nnoremap Q <nop>
 
-" grep.vim
-nnoremap <silent> <leader>f :Rgrep<CR>
-let Grep_Default_Options = '-IR'
-let Grep_Skip_Files = '*.log *.db'
-let Grep_Skip_Dirs = '.git node_modules bower_components'
-
 " terminal
 if has('nvim')
   nnoremap <silent> <leader>sh :terminal<CR>
@@ -188,9 +181,19 @@ noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
 
-set wildignore+=tags,*/tmp/*,*.so,*.swp,*.zip,*/spec/vcr/*,*/vendor/*,*/log/*,*/\.git/*,*/script/*,*/bin/*,*/coverage/*,*/node_modules/*,*/dist/*,*/bower_components/*
+set wildmenu
+set wildignorecase
+set wildmode=list:longest,full
+set wildignore+=tags,*/tmp/*,*.so,*.swp,*.zip,*/spec/vcr/*
+set wildignore+=*/vendor/*,*/log/*,*/\.git/*,*/script/*,*/\.svn/*
+set wildignore+=*/bin/*,*/coverage/*,*/node_modules/*
+set wildignore+=*/dist/*,*/bower_components/*
+
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+  nnoremap & :silent! grep! "\b<C-r><C-w>\b"<CR>:cwindow<CR>:redraw!<CR>
+  command! -nargs=+ -complete=file_in_path -bar Ag silent grep! <args>|cwindow|redraw!
 endif
 
 " FZF file fuzzy search
