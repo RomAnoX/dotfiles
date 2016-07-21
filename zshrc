@@ -42,6 +42,7 @@ alias trs='tmux rename-session -t'
 alias gitup='git checkout master && git pull'
 alias commit='git commit -m'
 alias vim='nvim'
+alias whereami='hostname'
 
 # Killing
 alias tks='tmux kill-session -t'
@@ -55,7 +56,5 @@ export NVM_DIR="/home/uacosta/.nvm"
 export PATH="/home/uacosta/.linuxbrew/bin:$PATH"
 export PATH="/home/uacosta/.linuxbrew/sbin:$PATH"
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

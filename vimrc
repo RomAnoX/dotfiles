@@ -138,6 +138,7 @@ let g:airline_symbols.space = "\ua0"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#neomake#enabled = 1
 
 hi SignColumn ctermbg=232
 
@@ -164,6 +165,10 @@ if has('nvim')
   nnoremap <silent> <leader>sh :terminal<CR>
 endif
 
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
 " Use Ctrl + E for sparkup plugin like Emmet for html files
 
 "**************************************
@@ -181,6 +186,12 @@ noremap <Leader>gll :Gpull<CR>
 noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
+
+" Tabular
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
 
 set wildmenu
 set wildignorecase
@@ -209,7 +220,12 @@ if has('nvim')
   autocmd! BufWritePost,BufEnter * Neomake
   map <leader>sc :Neomake!<CR>
   let g:neomake_javascript_enabled_makers = ['jshint']
-  let g:neomake_ruby_enabled_makers = ['rubocop']
+  let g:neomake_ruby_enabled_makers = ['mri']
+  " Error and Warning messages on the gutter
+  :highlight NeomakeWarningMsg ctermfg=227 ctermbg=237
+  :highlight NeomakeErrorMsg ctermfg=160 ctermbg=237
+  let g:neomake_warning_sign={'text': '☢', 'texthl': 'NeomakeWarningMsg'}
+  let g:neomake_error_sign={'text': '✘', 'texthl': 'NeomakeErrorMsg'}
 else
   " Plugin Syntastic
   " On by default, turn it off for html
