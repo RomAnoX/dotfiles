@@ -8,3 +8,7 @@ Style/MultilineTernaryOperator:
   Enabled: false
 Style/MutableConstant:
   Enabled: false
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+Style/Lambda
+  EnforceStyle: literal
