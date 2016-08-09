@@ -43,6 +43,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'sass' }
 Plug 'vim-scripts/CSApprox'
+Plug 'posva/vim-vue', { 'for': 'vue' }
 " Themes
 Plug 'dracula/vim'
 
