@@ -45,6 +45,7 @@ Plug 'vim-scripts/CSApprox'
 Plug 'posva/vim-vue', { 'for': 'vue' }
 " Themes
 Plug 'w0ng/vim-hybrid'
+Plug 'dracula/vim'
 
 if has('nvim')
   Plug 'benekastah/neomake'
@@ -103,9 +104,7 @@ set relativenumber
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
 set background=dark
-let g:hybrid_custom_term_colors = 1
-let g:hybrid_reduced_contrast = 1
-colorscheme hybrid
+colorscheme dracula
 
 if !&scrolloff
   set scrolloff=3
@@ -132,7 +131,7 @@ set gdefault
 set synmaxcol=512
 
 " vim-airline
-let g:airline_theme = 'hybrid'
+let g:airline_theme = 'molokai'
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
