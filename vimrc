@@ -37,7 +37,6 @@ Plug 'matze/vim-move'
 Plug 'amirh/HTML-AutoCloseTag', { 'for': 'html*' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'godlygeek/tabular'
-Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
@@ -45,7 +44,7 @@ Plug 'cakebaker/scss-syntax.vim', { 'for': 'sass' }
 Plug 'vim-scripts/CSApprox'
 Plug 'posva/vim-vue', { 'for': 'vue' }
 " Themes
-Plug 'dracula/vim'
+Plug 'w0ng/vim-hybrid'
 
 if has('nvim')
   Plug 'benekastah/neomake'
@@ -101,11 +100,12 @@ set number
 set relativenumber
 
 " Theme
-let g:Powerline_symbols = 'fancy'
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
 set background=dark
-color dracula
+let g:hybrid_custom_term_colors = 1
+let g:hybrid_reduced_contrast = 1
+colorscheme hybrid
 
 if !&scrolloff
   set scrolloff=3
@@ -132,7 +132,7 @@ set gdefault
 set synmaxcol=512
 
 " vim-airline
-let g:airline_theme = 'molokai'
+let g:airline_theme = 'hybrid'
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
