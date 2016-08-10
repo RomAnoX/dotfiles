@@ -101,7 +101,9 @@ set number
 set relativenumber
 
 " Theme
+let g:Powerline_symbols = 'fancy'
 set t_Co=256
+set fillchars+=stl:\ ,stlnc:\
 set background=dark
 color dracula
 
@@ -141,7 +143,7 @@ let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#neomake#enabled = 1
 
-hi SignColumn ctermbg=232
+"hi SignColumn ctermbg=232
 
 "**************************************
 " Abbrevations
