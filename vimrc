@@ -106,7 +106,12 @@ set background=dark
 let g:dracula_italic = 1
 colorscheme dracula
 
-highlight Comment cterm=italic
+" Custom colors for HTML with dracula theme
+hi Comment cterm=italic
+hi htmlTag ctermfg=212 guifg=#ff79c6
+hi htmlEndTag ctermfg=212 guifg=#ff79c6
+hi htmlTagname ctermfg=141 guifg=#bd93f9
+hi htmlArg ctermfg=117 guifg=#8be9fd
 
 if !&scrolloff
   set scrolloff=3
