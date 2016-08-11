@@ -1,23 +1,30 @@
 
-source ~/antigen.zsh
+# to instal zgen
+# cd ~
+# git clone https://github.com/tarjoilija/zgen.git .zgen
 
-# Load the oh-my-zsh's library.
-antigen use oh-my-zsh
+# load zgen
+source "${HOME}/.zgen/zgen.zsh"
 
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen bundle git
-antigen bundle command-not-found
+# if the init scipt doesn't exist
+if ! zgen saved; then
+  echo "Creating a zgen save"
 
-# Bundles from zsh-users.
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-history-substring-search
-antigen bundle zsh-users/zsh-autosuggestions
+  zgen oh-my-zsh
 
-# Load the theme.
-antigen theme dracula/zsh dracula
+  # plugins
+  zgen oh-my-zsh plugins/command-not-found
+  zgen load zsh-users/zsh-syntax-highlighting
+  zgen load zsh-users/zsh-history-substring-search
+  zgen load zsh-users/zsh-autosuggestions
+  zgen load zsh-users/zsh-completions
 
-# Tell antigen that you're done.
-antigen apply
+  # theme
+  zgen load dracula/zsh dracula
+
+  # save all to init script
+  zgen save
+fi
 
 # User configuration
 export PATH="/home/uacosta/.rbenv/shims:/home/uacosta/.rbenv/bin:/home/uacosta/.rbenv/shims:/home/uacosta/.rbenv/bin:/home/uacosta/.nvm/versions/node/v0.12.7/bin:/home/uacosta/.rbenv/shims:/home/uacosta/.rbenv/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/uacosta/bin:/home/uacosta/bin"
