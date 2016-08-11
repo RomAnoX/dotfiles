@@ -44,7 +44,6 @@ Plug 'cakebaker/scss-syntax.vim', { 'for': 'sass' }
 Plug 'vim-scripts/CSApprox'
 Plug 'posva/vim-vue', { 'for': 'vue' }
 " Themes
-Plug 'w0ng/vim-hybrid'
 Plug 'dracula/vim'
 
 if has('nvim')
@@ -104,7 +103,10 @@ set relativenumber
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
 set background=dark
+let g:dracula_italic = 1
 colorscheme dracula
+
+highlight Comment cterm=italic
 
 if !&scrolloff
   set scrolloff=3
