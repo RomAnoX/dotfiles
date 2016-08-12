@@ -27,6 +27,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-sensible'
 Plug 'mattn/emmet-vim', { 'for': ['html*', 'vue'] }
 Plug 'sheerun/vim-polyglot'
+Plug 'crusoexia/vim-javascript-lib'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-surround'
@@ -43,6 +44,9 @@ Plug 'vim-scripts/CSApprox'
 Plug 'posva/vim-vue', { 'for': 'vue' }
 " Themes
 Plug 'dracula/vim'
+Plug 'crusoexia/vim-monokai'
+
+let Theme = "Monokai"
 
 " For checking code syntax
 if has('nvim')
@@ -102,29 +106,33 @@ set relativenumber
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
 set background=dark
-let g:dracula_italic = 1
-colorscheme dracula
-
-" Custom colors for HTML with dracula theme
-" 84 green
-" 212 pink
-" 117 light blue
-" 141 purple
-" 61 dark purple
-" 228 yellow
-" 203 red
-" 215 orange
 hi Comment cterm=italic
-hi htmlTag ctermfg=212 guifg=#ff79c6
-hi htmlEndTag ctermfg=212 guifg=#ff79c6
-hi htmlTagname ctermfg=141 guifg=#bd93f9
-hi htmlArg ctermfg=117 guifg=#8be9fd
-hi jsObjectKey ctermfg=117
-hi jsClassKeywords ctermfg=212
-hi jsThis ctermfg=215
-hi jsFuncName ctermfg=84
-hi jsFunction ctermfg=212
-hi jsFuncCall ctermfg=84
+
+if (Theme == "Monokai")
+  let g:monokai_term_italic = 1
+  colorscheme monokai
+endif
+
+if (Theme == "Dracula")
+  colorscheme dracula
+
+  " Custom colors for HTML with dracula theme
+  hi htmlTag ctermfg=212 guifg=#ff79c6
+  hi htmlEndTag ctermfg=212 guifg=#ff79c6
+  hi htmlTagname ctermfg=141 guifg=#bd93f9
+  hi htmlArg ctermfg=117 guifg=#8be9fd
+  hi jsObjectKey ctermfg=117
+  hi jsClassKeywords ctermfg=212
+  hi jsThis ctermfg=215
+  hi jsFuncName ctermfg=84
+  hi jsFunction ctermfg=212
+  hi jsFuncCall ctermfg=84
+
+  " This color is for neomake signs
+  hi SignColumn ctermbg=232
+  hi LineNr ctermbg=234 ctermfg=246 cterm=NONE
+  hi CursorLineNr ctermfg=Yellow ctermbg=Black cterm=bold
+endif
 
 if !&scrolloff
   set scrolloff=3
@@ -162,10 +170,6 @@ let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#neomake#enabled = 1
 
-" This color is for neomake signs
-hi SignColumn ctermbg=232
-hi LineNr ctermbg=234 ctermfg=246 cterm=NONE
-hi CursorLineNr ctermfg=Yellow ctermbg=Black cterm=bold
 
 "**************************************
 " Abbrevations
