@@ -20,7 +20,7 @@ if ! zgen saved; then
   zgen load zsh-users/zsh-completions
 
   # theme
-  zgen load dracula/zsh dracula
+  zgen load EM-UlisesAcosta/dotfiles dracula-monokai
 
   # save all to init script
   zgen save
