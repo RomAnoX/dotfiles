@@ -252,6 +252,7 @@ let g:fzf_command_prefix = 'Fzf'
 let g:fzf_layout = { 'down': '~30%' }
 noremap <leader>e :FZF<CR>
 noremap <leader>b :FzfBuffers<CR>
+let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 " NeoMake or Syntastic
 if has('nvim')
