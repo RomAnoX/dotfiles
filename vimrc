@@ -25,17 +25,15 @@ call plug#begin('~/.vim/plugged')
 "**************************************
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-sensible'
-Plug 'rstacruz/sparkup', { 'rtp': 'vim/', 'for': 'html*' }
+Plug 'mattn/emmet-vim', { 'for': ['html*', 'vue'] }
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'matze/vim-move'
-Plug 'amirh/HTML-AutoCloseTag', { 'for': 'html*' }
-Plug 'othree/yajs.vim', { 'for': 'javascript' }
+Plug 'amirh/HTML-AutoCloseTag', { 'for': ['html*', 'vue'] }
 Plug 'godlygeek/tabular'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -46,6 +44,7 @@ Plug 'posva/vim-vue', { 'for': 'vue' }
 " Themes
 Plug 'dracula/vim'
 
+" For checking code syntax
 if has('nvim')
   Plug 'benekastah/neomake'
 else
@@ -107,11 +106,25 @@ let g:dracula_italic = 1
 colorscheme dracula
 
 " Custom colors for HTML with dracula theme
+" 84 green
+" 212 pink
+" 117 light blue
+" 141 purple
+" 61 dark purple
+" 228 yellow
+" 203 red
+" 215 orange
 hi Comment cterm=italic
 hi htmlTag ctermfg=212 guifg=#ff79c6
 hi htmlEndTag ctermfg=212 guifg=#ff79c6
 hi htmlTagname ctermfg=141 guifg=#bd93f9
 hi htmlArg ctermfg=117 guifg=#8be9fd
+hi jsObjectKey ctermfg=117
+hi jsClassKeywords ctermfg=212
+hi jsThis ctermfg=215
+hi jsFuncName ctermfg=84
+hi jsFunction ctermfg=212
+hi jsFuncCall ctermfg=84
 
 if !&scrolloff
   set scrolloff=3
@@ -178,7 +191,8 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-" Use Ctrl + E for sparkup plugin like Emmet for html files
+" Use Ctrl + E and , for Emmet for html files
+let g:user_emmet_leader_key='<C-E>'
 
 "**************************************
 " Abbrevations
@@ -275,3 +289,5 @@ vmap > >gv
 let g:javascript_enable_domhtmlcss = 1
 let g:mustache_abbreviations = 1
 let g:move_key_modifier = 'C'
+" let g:polyglot_disabled = ['javascript']
+
