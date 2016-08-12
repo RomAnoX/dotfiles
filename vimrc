@@ -45,8 +45,9 @@ Plug 'posva/vim-vue', { 'for': 'vue' }
 " Themes
 Plug 'dracula/vim'
 Plug 'crusoexia/vim-monokai'
+Plug 'tomasr/molokai'
 
-let Theme = "Monokai"
+let Theme = "Molokai"
 
 " For checking code syntax
 if has('nvim')
@@ -106,11 +107,16 @@ set relativenumber
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
 set background=dark
-hi Comment cterm=italic
 
 if (Theme == "Monokai")
   let g:monokai_term_italic = 1
   colorscheme monokai
+endif
+
+if (Theme == 'Molokai')
+  " let g:molokai_original = 1
+  let g:rehash256 = 1
+  colorscheme molokai
 endif
 
 if (Theme == "Dracula")
@@ -133,6 +139,9 @@ if (Theme == "Dracula")
   hi LineNr ctermbg=234 ctermfg=246 cterm=NONE
   hi CursorLineNr ctermfg=Yellow ctermbg=Black cterm=bold
 endif
+
+" There is love for italic comments
+hi Comment cterm=italic
 
 if !&scrolloff
   set scrolloff=3
