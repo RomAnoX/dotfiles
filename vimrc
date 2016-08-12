@@ -162,7 +162,10 @@ let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#neomake#enabled = 1
 
-"hi SignColumn ctermbg=232
+" This color is for neomake signs
+hi SignColumn ctermbg=232
+hi LineNr ctermbg=234 ctermfg=246 cterm=NONE
+hi CursorLineNr ctermfg=Yellow ctermbg=Black cterm=bold
 
 "**************************************
 " Abbrevations
@@ -245,8 +248,8 @@ if has('nvim')
   let g:neomake_javascript_enabled_makers = ['jshint']
   let g:neomake_ruby_enabled_makers = ['mri']
   " Error and Warning messages on the gutter
-  :highlight NeomakeWarningMsg ctermfg=227 ctermbg=237
-  :highlight NeomakeErrorMsg ctermfg=160 ctermbg=237
+  hi NeomakeWarningMsg ctermfg=227 ctermbg=237
+  hi NeomakeErrorMsg ctermfg=160 ctermbg=237
   let g:neomake_warning_sign={'text': '☢', 'texthl': 'NeomakeWarningMsg'}
   let g:neomake_error_sign={'text': '✘', 'texthl': 'NeomakeErrorMsg'}
 else
