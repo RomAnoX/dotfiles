@@ -306,4 +306,4 @@ vmap > >gv
 let g:javascript_enable_domhtmlcss = 1
 let g:mustache_abbreviations = 1
 let g:move_key_modifier = 'C'
-
+let g:jsx_ext_required = 1
