@@ -27,7 +27,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-sensible'
 Plug 'mattn/emmet-vim', { 'for': ['html*', 'vue'] }
 Plug 'sheerun/vim-polyglot'
-Plug 'crusoexia/vim-javascript-lib'
+Plug 'crusoexia/vim-javascript-lib', { 'for': ['javascript*', 'vue'] }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-surround'
@@ -39,7 +39,7 @@ Plug 'godlygeek/tabular'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
-Plug 'cakebaker/scss-syntax.vim', { 'for': 'sass' }
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['sass', 'scss', 'vue'] }
 Plug 'vim-scripts/CSApprox'
 Plug 'posva/vim-vue', { 'for': 'vue' }
 " Themes
