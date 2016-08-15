@@ -177,8 +177,6 @@ let g:airline_symbols.space = "\ua0"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#syntastic#enabled = 1
-let g:airline#extensions#neomake#enabled = 1
-
 
 "**************************************
 " Abbrevations
@@ -259,8 +257,10 @@ if has('nvim')
   " Plugin Neomake
   autocmd! BufWritePost,BufEnter * Neomake
   map <leader>sc :Neomake!<CR>
-  let g:neomake_javascript_enabled_makers = ['jshint']
+  let g:neomake_javascript_enabled_makers = ['standard']
+  let g:neomake_jsx_enabled_makers = ['standard']
   let g:neomake_ruby_enabled_makers = ['mri']
+
   " Error and Warning messages on the gutter
   hi NeomakeWarningMsg ctermfg=227 ctermbg=237
   hi NeomakeErrorMsg ctermfg=160 ctermbg=237
@@ -306,5 +306,4 @@ vmap > >gv
 let g:javascript_enable_domhtmlcss = 1
 let g:mustache_abbreviations = 1
 let g:move_key_modifier = 'C'
-" let g:polyglot_disabled = ['javascript']
 
