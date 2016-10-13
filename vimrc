@@ -43,11 +43,14 @@ Plug 'cakebaker/scss-syntax.vim', { 'for': ['sass', 'scss', 'vue'] }
 Plug 'vim-scripts/CSApprox'
 Plug 'posva/vim-vue', { 'for': 'vue' }
 " Themes
-Plug 'dracula/vim'
-Plug 'crusoexia/vim-monokai'
-Plug 'tomasr/molokai'
+" Plug 'dracula/vim'
+" Plug 'crusoexia/vim-monokai'
+" Plug 'tomasr/molokai'
+" Plug 'rakr/vim-one'
+" Plug 'gummesson/stereokai.vim'
+Plug 'chriskempson/base16-vim'
 
-let Theme = "Molokai"
+let Theme = "Base16"
 
 " For checking code syntax
 if has('nvim')
@@ -119,6 +122,15 @@ if (Theme == 'Molokai')
   colorscheme molokai
 endif
 
+if (Theme == 'Stereokai')
+  colorscheme stereokai
+endif
+
+if (Theme == 'Base16')
+  let base16colorspace=256
+  colorscheme base16-default-dark
+endif
+
 if (Theme == "Dracula")
   colorscheme dracula
 
@@ -138,6 +150,30 @@ if (Theme == "Dracula")
   hi SignColumn ctermbg=232
   hi LineNr ctermbg=234 ctermfg=246 cterm=NONE
   hi CursorLineNr ctermfg=Yellow ctermbg=Black cterm=bold
+endif
+
+if (Theme == "One")
+  "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+  "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+  "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+  if (empty($TMUX))
+    if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    endif
+    "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+    "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+    " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+    if (has("termguicolors"))
+      set termguicolors
+    endif
+  endif
+
+
+  set background=dark " for the dark version
+  " set background=light " for the light version
+  let g:one_allow_italics = 1 " I love italic for comments
+  colorscheme one
 endif
 
 " There is love for italic comments
