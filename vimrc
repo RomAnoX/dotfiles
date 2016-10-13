@@ -204,7 +204,7 @@ set gdefault
 set synmaxcol=512
 
 " vim-airline
-let g:airline_theme = 'molokai'
+let g:airline_theme = 'base16'
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
