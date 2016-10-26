@@ -1,0 +1,14 @@
+[alias]
+  ci = commit
+  br = branch
+  st = status
+  co = checkout
+  pl = pull
+  ps = push
+[color]
+  ui = auto
+[user]
+  name = Ulises Acosta
+  email = ulises.xsoft@gmail.com
+[core]
+  excludesfile = /Users/uacosta/.gitignore
