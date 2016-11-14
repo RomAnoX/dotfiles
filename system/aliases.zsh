@@ -33,11 +33,11 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # Creating compacted cd ..
-alias ..="cdl .."
-alias ..2="cdl ../.."
-alias ..3="cdl ../../.."
-alias ..4="cdl ../../../.."
-alias ..5="cdl ../../../../.."
+alias ..="cd .."
+alias ..2="cd ../.."
+alias ..3="cd ../../.."
+alias ..4="cd ../../../.."
+alias ..5="cd ../../../../.."
 
-# fzf alias
-function f () { "$@" | fzf }
+alias node='unalias node ; unalias npm ; nvm use default ; node $@'
+alias npm='unalias node ; unalias npm ; nvm use default ; npm $@'

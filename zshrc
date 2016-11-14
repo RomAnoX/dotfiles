@@ -20,5 +20,9 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 # Load rbenv
 eval "$(rbenv init -)"
 
+# Load nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use # This loads nvm
+
 # Load completions
 source $HOME/.dotfiles/system/completions.zsh
