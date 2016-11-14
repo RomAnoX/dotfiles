@@ -41,3 +41,5 @@ alias ..5="cd ../../../../.."
 
 alias node='unalias node ; unalias npm ; nvm use default ; node $@'
 alias npm='unalias node ; unalias npm ; nvm use default ; npm $@'
+
+alias ssh="TERM=xterm-256color ssh"
