@@ -12,3 +12,4 @@
   email = ulises.xsoft@gmail.com
 [core]
   excludesfile = /Users/uacosta/.gitignore
+	editor = nvim
