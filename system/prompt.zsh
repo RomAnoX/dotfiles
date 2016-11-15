@@ -9,6 +9,11 @@ autoload -U colors && colors
 autoload -U promptinit
 autoload -Uz compinit && compinit
 
+# Enable history
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.zsh_history
+
 # Use base16
 #BASE16_SCHEME="tomorrow-night"
 BASE16_SCHEME="default-dark"
