@@ -25,7 +25,7 @@ call plug#begin('~/.vim/plugged')
 "**************************************
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-sensible'
-Plug 'mattn/emmet-vim', { 'for': ['html*', 'vue'] }
+Plug 'mattn/emmet-vim', { 'for': ['html*', 'vue', 'javascript.jsx'] }
 Plug 'sheerun/vim-polyglot'
 Plug 'crusoexia/vim-javascript-lib', { 'for': ['javascript*', 'vue'] }
 Plug 'vim-airline/vim-airline'
@@ -34,7 +34,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'matze/vim-move'
-Plug 'amirh/HTML-AutoCloseTag', { 'for': ['html*', 'vue'] }
+Plug 'alvan/vim-closetag', { 'for': ['html*', 'vue', 'javascript.jsx'] }
 Plug 'godlygeek/tabular'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -42,22 +42,27 @@ Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['sass', 'scss', 'vue'] }
 Plug 'vim-scripts/CSApprox'
 Plug 'posva/vim-vue', { 'for': 'vue' }
+Plug 'bogado/file-line'
 " Themes
 " Plug 'dracula/vim'
 " Plug 'crusoexia/vim-monokai'
 " Plug 'tomasr/molokai'
 " Plug 'rakr/vim-one'
 " Plug 'gummesson/stereokai.vim'
+" Plug 'reewr/vim-monokai-phoenix'
 Plug 'chriskempson/base16-vim'
 
 let Theme = "Base16"
+let CheckSyntax = "no"
 
 " For checking code syntax
-if has('nvim')
-  Plug 'benekastah/neomake'
-else
-  Plug 'scrooloose/syntastic'
-  Plug 'noahfrederick/vim-neovim-defaults'
+if CheckSyntax == "yes"
+  if has('nvim')
+    Plug 'benekastah/neomake'
+  else
+    Plug 'scrooloose/syntastic'
+    Plug 'noahfrederick/vim-neovim-defaults'
+  endif
 endif
 
 call plug#end()
@@ -128,7 +133,13 @@ endif
 
 if (Theme == 'Base16')
   let base16colorspace=256
-  colorscheme base16-default-dark
+  if filereadable(expand("~/.vimrc_background"))
+    source ~/.vimrc_background
+  endif
+endif
+
+if (Theme == "Phoenix")
+  colorscheme monokai-phoenix
 endif
 
 if (Theme == "Dracula")
@@ -170,8 +181,6 @@ if (Theme == "One")
   endif
 
 
-  set background=dark " for the dark version
-  " set background=light " for the light version
   let g:one_allow_italics = 1 " I love italic for comments
   colorscheme one
 endif
@@ -288,36 +297,38 @@ noremap <leader>e :FZF<CR>
 noremap <leader>b :FzfBuffers<CR>
 let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
-" NeoMake or Syntastic
-if has('nvim')
-  " Plugin Neomake
-  autocmd! BufWritePost,BufEnter * Neomake
-  map <leader>sc :Neomake!<CR>
-  let g:neomake_javascript_enabled_makers = ['standard']
-  let g:neomake_jsx_enabled_makers = ['standard']
-  let g:neomake_ruby_enabled_makers = ['mri']
+if CheckSyntax == "yes"
+  " NeoMake or Syntastic
+  if has('nvim')
+    " Plugin Neomake
+    autocmd! BufWritePost,BufEnter * Neomake
+    map <leader>sc :Neomake!<CR>
+    let g:neomake_javascript_enabled_makers = ['standard']
+    let g:neomake_jsx_enabled_makers = ['standard']
+    let g:neomake_ruby_enabled_makers = ['mri']
 
-  " Error and Warning messages on the gutter
-  hi NeomakeWarningMsg ctermfg=227 ctermbg=237
-  hi NeomakeErrorMsg ctermfg=160 ctermbg=237
-  let g:neomake_warning_sign={'text': '☢', 'texthl': 'NeomakeWarningMsg'}
-  let g:neomake_error_sign={'text': '✘', 'texthl': 'NeomakeErrorMsg'}
-else
-  " Plugin Syntastic
-  " On by default, turn it off for html
-  let g:syntastic_mode_map = { 'mode': 'active',
-        \ 'active_filetypes': [],
-        \ 'passive_filetypes': ['html'] }
-  let g:syntastic_ruby_checkers = ['rubocop', 'mri']
-  let g:syntastic_javascript_checkers = ['jshint']"
-  let g:syntastic_enable_signs = 1
-  let g:syntastic_style_error_symbol = '✗✗'
-  let g:syntastic_style_warning_symbol = '!!'
-  let g:syntastic_error_symbol = '✗'
-  let g:syntastic_warning_symbol = '!'
-  let g:syntastic_auto_jump = 0
-  let g:syntastic_check_on_wq = 0
-  let g:syntastic_check_on_open = 1
+    " Error and Warning messages on the gutter
+    hi NeomakeWarningMsg ctermfg=227 ctermbg=237
+    hi NeomakeErrorMsg ctermfg=160 ctermbg=237
+    let g:neomake_warning_sign={'text': '☢', 'texthl': 'NeomakeWarningMsg'}
+    let g:neomake_error_sign={'text': '✘', 'texthl': 'NeomakeErrorMsg'}
+  else
+    " Plugin Syntastic
+    " On by default, turn it off for html
+    let g:syntastic_mode_map = { 'mode': 'active',
+          \ 'active_filetypes': [],
+          \ 'passive_filetypes': ['html'] }
+    let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+    let g:syntastic_javascript_checkers = ['jshint']"
+    let g:syntastic_enable_signs = 1
+    let g:syntastic_style_error_symbol = '✗✗'
+    let g:syntastic_style_warning_symbol = '!!'
+    let g:syntastic_error_symbol = '✗'
+    let g:syntastic_warning_symbol = '!'
+    let g:syntastic_auto_jump = 0
+    let g:syntastic_check_on_wq = 0
+    let g:syntastic_check_on_open = 1
+  endif
 endif
 
 " Disable visualbell
@@ -339,6 +350,7 @@ vmap < <gv
 vmap > >gv
 
 " Custom configs
+let g:closetag_filenames = "*.html,*.xhtml,*.jsx,*.vue"
 let g:javascript_enable_domhtmlcss = 1
 let g:mustache_abbreviations = 1
 let g:move_key_modifier = 'C'

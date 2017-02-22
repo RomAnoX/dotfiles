@@ -14,6 +14,9 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[4~" end-of-line
+
 # Use base16
 #BASE16_SCHEME="tomorrow-night"
 BASE16_SCHEME="default-dark"

@@ -5,6 +5,7 @@
   co = checkout
   pl = pull
   ps = push
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [color]
   ui = auto
 [user]
@@ -12,4 +13,4 @@
   email = ulises.xsoft@gmail.com
 [core]
   excludesfile = /Users/uacosta/.gitignore
-	editor = nvim
+  editor = nvim

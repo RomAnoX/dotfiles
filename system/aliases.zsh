@@ -15,6 +15,7 @@ alias tm="tmux new -s"
 alias tmu="tmux new -s ${PWD##*/}"
 
 alias ta="tmux attach"
+alias tls="tmux ls"
 alias tat="tmux attach -t"
 
 # vim-like exit
