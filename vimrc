@@ -53,7 +53,7 @@ Plug 'bogado/file-line'
 Plug 'chriskempson/base16-vim'
 
 let Theme = "Base16"
-let CheckSyntax = "no"
+let CheckSyntax = "yes"
 
 " For checking code syntax
 if CheckSyntax == "yes"
@@ -301,11 +301,20 @@ if CheckSyntax == "yes"
   " NeoMake or Syntastic
   if has('nvim')
     " Plugin Neomake
-    autocmd! BufWritePost,BufEnter * Neomake
     map <leader>sc :Neomake!<CR>
     let g:neomake_javascript_enabled_makers = ['standard']
     let g:neomake_jsx_enabled_makers = ['standard']
     let g:neomake_ruby_enabled_makers = ['mri']
+
+    if findfile('.eslintrc', '.;') !=# ''
+      let g:neomake_javascript_enabled_makers = ['eslint']
+      let g:neomake_jsx_enabled_makers = ['eslint']
+
+      let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint')
+      let b:neomake_javascript_eslint_exe = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
+    endif
+
+    autocmd! BufWritePost,BufEnter * Neomake
 
     " Error and Warning messages on the gutter
     hi NeomakeWarningMsg ctermfg=227 ctermbg=237
