@@ -43,6 +43,10 @@ Plug 'cakebaker/scss-syntax.vim', { 'for': ['sass', 'scss', 'vue'] }
 Plug 'vim-scripts/CSApprox'
 Plug 'posva/vim-vue', { 'for': 'vue' }
 Plug 'bogado/file-line'
+" Please be sure to use NeoVim
+Plug 'w0rp/ale'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
 " Themes
 " Plug 'dracula/vim'
 " Plug 'crusoexia/vim-monokai'
@@ -53,17 +57,6 @@ Plug 'bogado/file-line'
 Plug 'chriskempson/base16-vim'
 
 let Theme = "Base16"
-let CheckSyntax = "yes"
-
-" For checking code syntax
-if CheckSyntax == "yes"
-  if has('nvim')
-    Plug 'benekastah/neomake'
-  else
-    Plug 'scrooloose/syntastic'
-    Plug 'noahfrederick/vim-neovim-defaults'
-  endif
-endif
 
 call plug#end()
 
@@ -297,48 +290,29 @@ noremap <leader>e :FZF<CR>
 noremap <leader>b :FzfBuffers<CR>
 let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
-if CheckSyntax == "yes"
-  " NeoMake or Syntastic
-  if has('nvim')
-    " Plugin Neomake
-    map <leader>sc :Neomake!<CR>
-    let g:neomake_javascript_enabled_makers = ['standard']
-    let g:neomake_jsx_enabled_makers = ['standard']
-    let g:neomake_ruby_enabled_makers = ['mri']
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
 
-    if findfile('.eslintrc', '.;') !=# ''
-      let g:neomake_javascript_enabled_makers = ['eslint']
-      let g:neomake_jsx_enabled_makers = ['eslint']
+" New Ale Syntax Checker
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'ruby': ['rubocop'],
+\   'go': ['golint'],
+\}
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+hi ALEErrorSign ctermfg=227 ctermbg=237
+hi ALEWarningSign ctermfg=160 ctermbg=237
 
-      let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint')
-      let b:neomake_javascript_eslint_exe = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
-    endif
-
-    autocmd! BufWritePost,BufEnter * Neomake
-
-    " Error and Warning messages on the gutter
-    hi NeomakeWarningMsg ctermfg=227 ctermbg=237
-    hi NeomakeErrorMsg ctermfg=160 ctermbg=237
-    let g:neomake_warning_sign={'text': '☢', 'texthl': 'NeomakeWarningMsg'}
-    let g:neomake_error_sign={'text': '✘', 'texthl': 'NeomakeErrorMsg'}
-  else
-    " Plugin Syntastic
-    " On by default, turn it off for html
-    let g:syntastic_mode_map = { 'mode': 'active',
-          \ 'active_filetypes': [],
-          \ 'passive_filetypes': ['html'] }
-    let g:syntastic_ruby_checkers = ['rubocop', 'mri']
-    let g:syntastic_javascript_checkers = ['jshint']"
-    let g:syntastic_enable_signs = 1
-    let g:syntastic_style_error_symbol = '✗✗'
-    let g:syntastic_style_warning_symbol = '!!'
-    let g:syntastic_error_symbol = '✗'
-    let g:syntastic_warning_symbol = '!'
-    let g:syntastic_auto_jump = 0
-    let g:syntastic_check_on_wq = 0
-    let g:syntastic_check_on_open = 1
-  endif
-endif
+" Options for running lint
+" let g:ale_lint_on_save = 1
+" let g:ale_lint_on_text_changed = 0
+" You can disable this option too
+" if you don't want linters to run on opening a file
+" let g:ale_lint_on_enter = 0
 
 " Disable visualbell
 set visualbell t_vb=
