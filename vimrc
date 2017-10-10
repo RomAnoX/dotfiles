@@ -25,7 +25,7 @@ call plug#begin('~/.vim/plugged')
 "**************************************
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-sensible'
-Plug 'mattn/emmet-vim', { 'for': ['html*', 'vue', 'javascript.jsx'] }
+Plug 'mattn/emmet-vim', { 'for': ['html*', 'vue*', 'javascript.jsx'] }
 Plug 'sheerun/vim-polyglot'
 Plug 'crusoexia/vim-javascript-lib', { 'for': ['javascript*', 'vue'] }
 Plug 'vim-airline/vim-airline'
@@ -34,7 +34,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'matze/vim-move'
-Plug 'alvan/vim-closetag', { 'for': ['html*', 'vue', 'javascript.jsx'] }
+Plug 'alvan/vim-closetag', { 'for': ['html*', 'vue*', 'javascript.jsx'] }
 Plug 'godlygeek/tabular'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -43,20 +43,24 @@ Plug 'cakebaker/scss-syntax.vim', { 'for': ['sass', 'scss', 'vue'] }
 Plug 'vim-scripts/CSApprox'
 Plug 'posva/vim-vue', { 'for': 'vue' }
 Plug 'bogado/file-line'
+Plug 'alvan/vim-closetag'
+Plug 'sbdchd/neoformat'
 " Please be sure to use NeoVim
 Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Themes
-" Plug 'dracula/vim'
-" Plug 'crusoexia/vim-monokai'
-" Plug 'tomasr/molokai'
-" Plug 'rakr/vim-one'
-" Plug 'gummesson/stereokai.vim'
-" Plug 'reewr/vim-monokai-phoenix'
+Plug 'dracula/vim'
+Plug 'crusoexia/vim-monokai'
+Plug 'tomasr/molokai'
+Plug 'rakr/vim-one'
+Plug 'gummesson/stereokai.vim'
+Plug 'reewr/vim-monokai-phoenix'
+Plug 'j-tom/vim-old-hope'
 Plug 'chriskempson/base16-vim'
+Plug 'hzchirs/vim-material'
 
-let Theme = "Base16"
+let Theme = "Monokai"
 
 call plug#end()
 
@@ -135,6 +139,10 @@ if (Theme == "Phoenix")
   colorscheme monokai-phoenix
 endif
 
+if (Theme == "OldHope")
+  colorscheme old-hope
+endif
+
 if (Theme == "Dracula")
   colorscheme dracula
 
@@ -179,7 +187,7 @@ if (Theme == "One")
 endif
 
 " There is love for italic comments
-hi Comment cterm=italic
+" hi Comment cterm=italic
 
 if !&scrolloff
   set scrolloff=3
@@ -206,7 +214,7 @@ set gdefault
 set synmaxcol=512
 
 " vim-airline
-let g:airline_theme = 'base16'
+let g:airline_theme = 'lucius'
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -241,6 +249,7 @@ endif
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+  au FileType javascript setlocal formatprg=prettier\ --single-quote\ --trailing-comma\ all
 endif
 
 " Use Ctrl + E and , for Emmet for html files
@@ -289,6 +298,7 @@ let g:fzf_layout = { 'down': '~30%' }
 noremap <leader>e :FZF<CR>
 noremap <leader>b :FzfBuffers<CR>
 let $FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+set splitbelow splitright
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
@@ -304,8 +314,8 @@ let g:ale_sign_warning = '⚠'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-hi ALEErrorSign ctermfg=227 ctermbg=237
-hi ALEWarningSign ctermfg=160 ctermbg=237
+hi ALEWarningSign ctermfg=227 ctermbg=237
+hi ALEErrorSign ctermfg=160 ctermbg=237
 
 " Options for running lint
 " let g:ale_lint_on_save = 1
@@ -313,6 +323,10 @@ hi ALEWarningSign ctermfg=160 ctermbg=237
 " You can disable this option too
 " if you don't want linters to run on opening a file
 " let g:ale_lint_on_enter = 0
+
+" Neoformat
+autocmd BufWritePre *.js Neoformat
+let g:neoformat_try_formatprg = 1
 
 " Disable visualbell
 set visualbell t_vb=
@@ -333,8 +347,8 @@ vmap < <gv
 vmap > >gv
 
 " Custom configs
-let g:closetag_filenames = "*.html,*.xhtml,*.jsx,*.vue"
+let g:closetag_filenames = "*.html,*.xhtml,*.jsx,*.vue,*.js"
 let g:javascript_enable_domhtmlcss = 1
 let g:mustache_abbreviations = 1
 let g:move_key_modifier = 'C'
-let g:jsx_ext_required = 1
+let g:jsx_ext_required = 0

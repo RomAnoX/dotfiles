@@ -40,7 +40,9 @@ alias ..3="cd ../../.."
 alias ..4="cd ../../../.."
 alias ..5="cd ../../../../.."
 
-alias node='unalias node ; unalias npm ; nvm use default ; node $@'
-alias npm='unalias node ; unalias npm ; nvm use default ; npm $@'
+# alias node='unalias node ; unalias npm ; nvm use default ; node $@'
+# alias npm='unalias node ; unalias npm ; nvm use default ; npm $@'
+
+alias testing="DOCKER_BUNDLE_PATH='bundle' RACK_ENV=test docker-compose run --rm api bundle exec rspec"
 
 alias ssh="TERM=xterm-256color ssh"

@@ -17,15 +17,20 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 # Use fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Load rbenv
-eval "$(rbenv init -)"
+# Load asdf tools version managers
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
 
 # Load direnv
 eval "$(direnv hook zsh)"
 
+# replaced with asdf tools version manager
+# Load rbenv
+# eval "$(rbenv init -)"
 # Load nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use # This loads nvm
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use # This loads nvm
 
 # Load completions
 source $HOME/.dotfiles/system/completions.zsh
+

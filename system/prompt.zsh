@@ -19,9 +19,9 @@ bindkey "^[[4~" end-of-line
 
 # Use base16
 #BASE16_SCHEME="tomorrow-night"
-BASE16_SCHEME="default-dark"
-BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-$BASE16_SCHEME.sh"
-[[ -s $BASE16_SHELL ]] && . $BASE16_SHELL
+# BASE16_SCHEME="default-dark"
+# BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-$BASE16_SCHEME.sh"
+# [[ -s $BASE16_SHELL ]] && . $BASE16_SHELL
 
 # Customize geometry
 GEOMETRY_COLOR_PROMPT=green
