@@ -34,3 +34,9 @@ eval "$(direnv hook zsh)"
 # Load completions
 source $HOME/.dotfiles/system/completions.zsh
 
+
+###-tns-completion-start-###
+if [ -f /Users/romanox/.tnsrc ]; then 
+    source /Users/romanox/.tnsrc 
+fi
+###-tns-completion-end-###

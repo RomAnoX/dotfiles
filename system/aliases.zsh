@@ -40,9 +40,15 @@ alias ..3="cd ../../.."
 alias ..4="cd ../../../.."
 alias ..5="cd ../../../../.."
 
+alias dr="docker-compose run --rm"
+alias drs="docker-compose run --rm --service-ports"
+alias ds="docker-sync"
+alias dss="docker-sync-stack"
+
 # alias node='unalias node ; unalias npm ; nvm use default ; node $@'
 # alias npm='unalias node ; unalias npm ; nvm use default ; npm $@'
 
 alias testing="DOCKER_BUNDLE_PATH='bundle' RACK_ENV=test docker-compose run --rm api bundle exec rspec"
 
 alias ssh="TERM=xterm-256color ssh"
+alias startplus-server="bundle exec unicorn -p 9393 konfig.ru"

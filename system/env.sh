@@ -10,3 +10,4 @@ export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
 export PATH=$PATH:$HOME/.composer/vendor/bin
+export PATH=$PATH:/usr/local/opt/sqlite/bin
