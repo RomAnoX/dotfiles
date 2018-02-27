@@ -1,0 +1,67 @@
+"*":
+  "atom-material-ui":
+    colors:
+      abaseColor: "#607d8b"
+      predefinedColor: "Blue Grey"
+    fonts:
+      fontSize: 18
+    tabs:
+      compactTabs: true
+    ui:
+      panelContrast: true
+  core:
+    projectHome: "/Users/romanox/Projects"
+    telemetryConsent: "no"
+    themes: [
+      "seti-ui"
+      "monokai-seti"
+    ]
+  editor:
+    fontFamily: "Fira Code"
+    fontSize: 16
+    tabType: "soft"
+  "exception-reporting":
+    userId: "0e995cde-82be-429c-9da4-30d40ce29e07"
+  "goto-definition":
+    performanceMode: true
+  "linter-ui-default":
+    panelHeight: 259
+  minimap:
+    plugins:
+      "highlight-selected": true
+      "highlight-selectedDecorationsZIndex": 0
+  "one-dark-ui": {}
+  "platformio-ide-terminal":
+    ansiColors:
+      normal:
+        black: "#181818"
+        blue: "#7cafc2"
+        cyan: "#86c1b9"
+        green: "#a1b56c"
+        magenta: "#ba8baf"
+        red: "#ab4641"
+        white: "#d8d8d8"
+        yellow: "#f7ca88"
+      zBright:
+        brightBlack: "#585858"
+        brightBlue: "#7cafc2"
+        brightCyan: "#86c1b9"
+        brightGreen: "#a1b56c"
+        brightMagenta: "#ba8baf"
+        brightRed: "#ab4641"
+        brightWhite: "#f8f8f8"
+        brightYellow: "#f7ca88"
+    style:
+      defaultPanelHeight: "400px"
+      fontFamily: "Fira Code"
+      fontSize: "14"
+    toggles:
+      autoClose: true
+  "seti-ui":
+    compactView: true
+    fileIcons: false
+    hideProjectTab: true
+  "tree-view":
+    hideIgnoredNames: true
+  welcome:
+    showOnStartup: false
