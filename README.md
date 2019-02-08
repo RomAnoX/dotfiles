@@ -1,31 +1,39 @@
 This is my default configuration for my dotfiles.
 Using Zsh with antibody, Neovim with vim-plug and Tmux
 
+Copy your SSH keys and configuration
+
+Copy your AWS credentials
+
 Things to install
-* brew
-* postgres
-* redis
-* asdf
+* [Brew](https://brew.sh/)
+  - zsh
+  - postgres
+  - redis
+  - antibody
+  - diff-so-fancy
+  - the_silver_searcher
+  - ripgrep
+  - exa
+  - fzf
+  - neovim
+  - tmux
+  - docker
+  - docker-compose
+* [asdf](https://github.com/asdf-vm/asdf)
   - ruby 2.4.4
   - nodejs 8.10.0
-* antibody
-* diff-so-fancy
-* exa
-* fzf
-* neovim
-* tmux
-* docker
-* docker-compose
-* docker server for mac
-* aws-cli
-* 1password
-* iTerm
-* Atom
-* Zoom Meeting
-* Slack
-* Whatsapp
-* Chrome
-* Spectacle
+* [Docker for mac](https://docs.docker.com/docker-for-mac/install/)
+* [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+* [Brew Cask](https://github.com/Homebrew/homebrew-cask)
+  - 1password
+  - iterm2
+  - atom
+  - zoomus
+  - slack
+  - whatsapp
+  - google-chrome
+  - spectacle
 
 Install Fonts
 ```
@@ -57,12 +65,11 @@ Remove the login information
 $ touch ~/.hushlogin
 ```
 
-Copy your SSH keys and configuration
-Copy your AWS credentials
-
 For iTerm use the `molokai` theme colors that is in the repo, and also
 configure Fura Code 14pt or Fira Code 14 pt as the font with ligatures
 
 For Atom run the “Package sync: Sync” command from the Atom Command Palette
+
 For NVIM just run `vim` and let the plugins to get installed
+
 For Tmux just run `tmux` and let the plugins to get installed
