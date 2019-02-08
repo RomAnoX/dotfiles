@@ -34,6 +34,9 @@ Things to install
   - whatsapp
   - google-chrome
   - spectacle
+  - dropbox
+  - spotify
+  - vlc
 
 Install Fonts
 ```
