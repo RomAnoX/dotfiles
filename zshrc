@@ -1,11 +1,14 @@
 # Load custom variables before anything
 source $HOME/.dotfiles/system/env.sh
 
+# Init antibody
+source $HOME/.dotfiles/antibody/init
+
 # Load prompt settings
 source $HOME/.dotfiles/system/prompt.zsh
 
-# Init antibody
-source $HOME/.dotfiles/antibody/init
+# Set keybindings
+source $HOME/.dotfiles/system/keybindings.zsh
 
 # Load aliases
 source $HOME/.dotfiles/system/aliases.zsh
@@ -40,3 +43,13 @@ if [ -f /Users/romanox/.tnsrc ]; then
     source /Users/romanox/.tnsrc 
 fi
 ###-tns-completion-end-###
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/uacosta/Projects/mycnc/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/uacosta/Projects/mycnc/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/uacosta/Projects/mycnc/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/uacosta/Projects/mycnc/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/uacosta/.config/yarn/global/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/uacosta/.config/yarn/global/node_modules/tabtab/.completions/slss.zsh

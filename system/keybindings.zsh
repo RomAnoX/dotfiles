@@ -1,0 +1,8 @@
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[4~" end-of-line
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+

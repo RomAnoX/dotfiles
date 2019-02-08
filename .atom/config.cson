@@ -1,36 +1,65 @@
 "*":
   "atom-material-ui":
     colors:
-      abaseColor: "#607d8b"
-      predefinedColor: "Blue Grey"
-    fonts:
-      fontSize: 18
+      abaseColor: "#2196f3"
+      genAccent: true
+      predefinedColor: "Blue"
+    fonts: {}
     tabs:
       compactTabs: true
     ui:
       panelContrast: true
+  "atom-ui-tweaks":
+    editor:
+      forceCommentFontStyle: "italic"
+      topPadding: "16px"
+    findInProject: {}
+    status:
+      hideVimModePlusStatus: true
+    terminal:
+      cursorColor: "teal"
+      hideAddNewTerminalButton: true
+      hideCloseTerminalButton: true
+      hideInsertTextButton: true
+    tree: {}
+    ui:
+      atomLogoSplashScreen: true
+      compactFuzzyFinder: true
+      hideFindAndReplaceCloseButton: true
   core:
+    disabledPackages: [
+      "linter-rubocop"
+    ]
+    openEmptyEditorOnStart: false
     projectHome: "/Users/romanox/Projects"
+    restorePreviousWindowsOnStart: "always"
     telemetryConsent: "no"
     themes: [
-      "seti-ui"
+      "flexible-ui"
       "monokai-seti"
     ]
+    titleBar: "custom-inset"
   editor:
     fontFamily: "Fira Code"
-    fontSize: 16
+    scrollPastEnd: true
     tabType: "soft"
   "exception-reporting":
     userId: "0e995cde-82be-429c-9da4-30d40ce29e07"
   "goto-definition":
     performanceMode: true
-  "linter-ui-default":
-    panelHeight: 259
+  "isotope-ui":
+    fontFamily: "Ubuntu"
+    tabSizing: "Minimum"
+  "linter-eslint":
+    global:
+      globalNodePath: "/Users/romanox/.asdf/installs/nodejs/8.6.0/.npm"
   minimap:
     plugins:
       "highlight-selected": true
       "highlight-selectedDecorationsZIndex": 0
-  "one-dark-ui": {}
+  "neutron-dark-ui":
+    fontSize: 13
+  "package-sync": {}
   "platformio-ide-terminal":
     ansiColors:
       normal:
@@ -51,17 +80,29 @@
         brightRed: "#ab4641"
         brightWhite: "#f8f8f8"
         brightYellow: "#f7ca88"
+    core: {}
     style:
       defaultPanelHeight: "400px"
       fontFamily: "Fira Code"
       fontSize: "14"
     toggles:
       autoClose: true
+  "seti-syntax":
+    dynamicColor: false
   "seti-ui":
     compactView: true
     fileIcons: false
     hideProjectTab: true
+  "sync-settings":
+    _lastBackupHash: "efeacb4d99fb4fac75dc2fca4d0798d8ad3135ae"
+    gistId: "1a5e03b037f39d5b651355043906cb3b"
+    personalAccessToken: "3eefeba70d9182ddfd383cbcb1b651683ccc6592"
+  tabs:
+    alwaysShowTabBar: false
+    enableVcsColoring: true
   "tree-view":
     hideIgnoredNames: true
+  "vibrance-ui":
+    vibrancy: true
   welcome:
     showOnStartup: false

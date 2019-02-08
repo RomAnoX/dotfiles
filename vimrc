@@ -47,7 +47,7 @@ Plug 'alvan/vim-closetag'
 Plug 'sbdchd/neoformat'
 " Please be sure to use NeoVim
 Plug 'w0rp/ale'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Themes
 Plug 'dracula/vim'

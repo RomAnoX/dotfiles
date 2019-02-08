@@ -31,15 +31,34 @@ atom-text-editor .cursor {
   // border-color: red;
 }
 
-.platformio-ide-terminal .xterm {
+.title-bar {
+  background: #0c0c0d;
+  border-bottom: none;
+  height: 20px !important;
+}
+
+// .title-bar div {
+//   visibility: hidden;
+// }
+
+ul.tab-bar {
+  margin-left: -1px;
+}
+
+.tree-view .project-root.project-root > .header {
+  border-bottom: none;
+  padding-left: 12px;
+}
+
+.tree-view .list-tree .list-tree {
+  border-left: none;
+  padding-left: 10px;
+}
+
+/* .platformio-ide-terminal .xterm {
   background-color: rbg(24, 24, 24);
-  /* color: ;
+} */
 
-  ::selection {
-    background-color: ;
-  }
-
-  .terminal-cursor {
-    background-color: ;
-  } */
+.platformio-ide-terminal.terminal-view .input-block {
+  display: none;
 }

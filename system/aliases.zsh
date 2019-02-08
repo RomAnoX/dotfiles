@@ -23,10 +23,18 @@ alias :q="exit"
 alias cl="clear"
 
 # Color listing files
-alias ll="ls -lF -G"
-alias la="ls -laF -G"
+# alias ll="ls -lF -G"
+# alias la="ls -laF -G"
+# alias ls="command ls -G"
 alias lsd="ls -lF -G | grep --color=never '^d'"
-alias ls="command ls -G"
+alias ls="exa"
+alias l="exa -a"
+alias ll="exa -lgh"
+alias la="exa -lagh"
+alias lt="exa -T"
+alias lg="exa -lagh --git"
+alias llt="ll -T"
+alias lat="la -T"
 
 # Color grep
 alias grep='grep --color=auto'
@@ -48,7 +56,7 @@ alias dss="docker-sync-stack"
 # alias node='unalias node ; unalias npm ; nvm use default ; node $@'
 # alias npm='unalias node ; unalias npm ; nvm use default ; npm $@'
 
-alias testing="DOCKER_BUNDLE_PATH='bundle' RACK_ENV=test docker-compose run --rm api bundle exec rspec"
+alias testing="RACK_ENV=test docker-compose run --rm api bundle exec rspec"
 
 alias ssh="TERM=xterm-256color ssh"
 alias startplus-server="bundle exec unicorn -p 9393 konfig.ru"
