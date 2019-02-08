@@ -93,10 +93,6 @@
     compactView: true
     fileIcons: false
     hideProjectTab: true
-  "sync-settings":
-    _lastBackupHash: "efeacb4d99fb4fac75dc2fca4d0798d8ad3135ae"
-    gistId: "1a5e03b037f39d5b651355043906cb3b"
-    personalAccessToken: "3eefeba70d9182ddfd383cbcb1b651683ccc6592"
   tabs:
     alwaysShowTabBar: false
     enableVcsColoring: true
