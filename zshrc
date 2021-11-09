@@ -21,22 +21,13 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Load asdf tools version managers
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
+. /usr/local/opt/asdf/libexec/asdf.sh
 
 # Load direnv
 eval "$(direnv hook zsh)"
 
-# replaced with asdf tools version manager
-# Load rbenv
-# eval "$(rbenv init -)"
-# Load nvm
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use # This loads nvm
-
 # Load completions
 source $HOME/.dotfiles/system/completions.zsh
-
 
 ###-tns-completion-start-###
 if [ -f /Users/romanox/.tnsrc ]; then 
@@ -53,3 +44,4 @@ fi
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /Users/uacosta/.config/yarn/global/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/uacosta/.config/yarn/global/node_modules/tabtab/.completions/slss.zsh
+

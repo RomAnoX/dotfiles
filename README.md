@@ -6,8 +6,9 @@ Copy your SSH keys and configuration
 Copy your AWS credentials
 
 Things to install
-* [Brew](https://brew.sh/)
-  - zsh
+
+- [Brew](https://brew.sh/)
+  - zsh (only if needed)
   - postgres
   - redis
   - antibody
@@ -18,52 +19,51 @@ Things to install
   - fzf
   - neovim
   - tmux
-  - docker
-  - docker-compose
-* [asdf](https://github.com/asdf-vm/asdf)
-  - ruby 2.4.4
-  - nodejs 8.10.0
-* [Docker for mac](https://docs.docker.com/docker-for-mac/install/)
-* [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
-* [Brew Cask](https://github.com/Homebrew/homebrew-cask)
+- [asdf](https://github.com/asdf-vm/asdf)
+- [Docker for mac](https://docs.docker.com/docker-for-mac/install/)
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+- [Brew Cask](https://github.com/Homebrew/homebrew-cask)
   - 1password
   - iterm2
-  - atom
+  - visual-studio-code
   - zoomus
-  - slack
   - whatsapp
-  - google-chrome
   - spectacle
   - dropbox
   - spotify
   - vlc
 
 Install Fonts
+
 ```
-$ brew tap caskroom/fonts
-$ brew cask install font-hack-nerd-font
+$ brew tap homebrew/cask-fonts
+$ brew install --cask font-hack-nerd-font
+$ brew install --cask font-fira-code
+$ brew install --cask font-jetbrains-mono
 ```
 
 Clone Repo
+
 ```
 $ git clone git@github.com:RomAnoX/dotfiles.git ~/.dotfiles
 ```
 
 Link Configuration Files
+
 ```
 $ ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 $ ln -s ~/.dotfiles/gitignore ~/.gitignore
 $ ln -s ~/.dotfiles/vimrc ~/.vimrc
 $ ln -s ~/.dotfiles/zshrc ~/.zshrc
-$ ln -s ~/.dotfiles/tmux.config ~/.tmux.config
-$ ln -s ~/.dotfiles/.atom/ ~/.atom
-$ ln -s ~/.dotfiles/rubocop.yml ~/.rubocop.yml
+$ ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
 
-$ mkdir -p ~/.config/nvim
-$ ln -s ~/.config/init.vim ~/.vimrc
+# for NeoVim app
+$ mkdir -p ~/.config/nvim/autoload
+$ ln -s ~/.dotfiles/vimrc ~/.config/nvim/init.vim
 ```
 
 Remove the login information
+
 ```
 $ touch ~/.hushlogin
 ```
