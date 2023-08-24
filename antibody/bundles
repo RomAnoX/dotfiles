@@ -1,5 +1,6 @@
 zdharma-continuum/fast-syntax-highlighting
 zsh-users/zsh-history-substring-search
 zsh-users/zsh-autosuggestions
-geometry-zsh/geometry
+zsh-users/zsh-completions
 Tarrasch/zsh-bd
+dracula/zsh
