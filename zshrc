@@ -1,47 +1,32 @@
-# Load custom variables before anything
-source $HOME/.dotfiles/system/env.sh
+# Created by Zap installer
+[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
-# Init antibody
-source $HOME/.dotfiles/antibody/init
+plug $HOME/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
+plug "zsh-users/zsh-autosuggestions"
+plug "zap-zsh/supercharge"
+plug "MAHcodes/distro-prompt"
+plug "zsh-users/zsh-syntax-highlighting"
+plug "zsh-users/zsh-history-substring-search"
 
-# Load prompt settings
-source $HOME/.dotfiles/system/prompt.zsh
+# Load and initialise completion system
+autoload -Uz compinit
+compinit
 
-# Set keybindings
-source $HOME/.dotfiles/system/keybindings.zsh
+# personal files
+plug $HOME/.dotfiles/system/env.sh
+plug $HOME/.dotfiles/system/aliases.zsh
+plug $HOME/.dotfiles/system/keybindings.zsh
+plug $HOME/.dotfiles/system/utils.zsh
 
-# Load aliases
-source $HOME/.dotfiles/system/aliases.zsh
 
-# Use base16
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+# bun completions
+[ -s "/Users/uacosta/.bun/_bun" ] && source "/Users/uacosta/.bun/_bun"
 
-# Use fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# zoxide installer
+eval "$(zoxide init --cmd cd zsh)"
 
-# Load asdf tools version managers
-. /usr/local/opt/asdf/libexec/asdf.sh
-
-# Load direnv
-eval "$(direnv hook zsh)"
-
-# Load completions
-source $HOME/.dotfiles/system/completions.zsh
-
-###-tns-completion-start-###
-if [ -f /Users/romanox/.tnsrc ]; then 
-    source /Users/romanox/.tnsrc 
-fi
-###-tns-completion-end-###
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/uacosta/Projects/mycnc/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/uacosta/Projects/mycnc/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/uacosta/Projects/mycnc/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/uacosta/Projects/mycnc/node_modules/tabtab/.completions/sls.zsh
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /Users/uacosta/.config/yarn/global/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/uacosta/.config/yarn/global/node_modules/tabtab/.completions/slss.zsh
-
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="/usr/local/opt/gawk/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/postgresql@15/bin:$PATH"

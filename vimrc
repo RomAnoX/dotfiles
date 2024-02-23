@@ -59,8 +59,9 @@ Plug 'reewr/vim-monokai-phoenix'
 Plug 'j-tom/vim-old-hope'
 Plug 'chriskempson/base16-vim'
 Plug 'hzchirs/vim-material'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
-let Theme = "Monokai"
+let Theme = "Catppuccin"
 
 call plug#end()
 
@@ -112,6 +113,10 @@ set relativenumber
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
 set background=dark
+
+if (Theme == "Catppuccin")
+  colorscheme catppuccin-mocha
+endif
 
 if (Theme == "Monokai")
   let g:monokai_term_italic = 1
@@ -214,10 +219,10 @@ set gdefault
 set synmaxcol=512
 
 " vim-airline
-let g:airline_theme = 'lucius'
+let g:airline_theme = 'catppuccin'
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
+ let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
 let g:airline#extensions#tabline#enabled = 1
