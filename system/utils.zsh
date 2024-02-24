@@ -7,5 +7,8 @@
 # Load direnv
 eval "$(direnv hook zsh)"
 
+# zoxide installer
+eval "$(zoxide init --cmd cd zsh)"
+
 # added by travis gem
 [ ! -s /Users/uacosta/.travis/travis.sh ] || source /Users/uacosta/.travis/travis.sh
