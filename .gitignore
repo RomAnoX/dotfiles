@@ -3,3 +3,6 @@
 
 # Atom sync
 .atom/packages
+
+# Secrets
+system/secrets.zsh
