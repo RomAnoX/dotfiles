@@ -17,7 +17,7 @@ plug $HOME/.dotfiles/system/env.sh
 plug $HOME/.dotfiles/system/aliases.zsh
 plug $HOME/.dotfiles/system/keybindings.zsh
 plug $HOME/.dotfiles/system/utils.zsh
-
+plug $HOME/.dotfiles/system/secrets.zsh
 
 # bun completions
 [ -s "/Users/uacosta/.bun/_bun" ] && source "/Users/uacosta/.bun/_bun"
